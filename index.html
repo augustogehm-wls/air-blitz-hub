@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Air Blitz — Playable</title>
+<style>
+  :root {
+    --bg: #0f0f12;
+    --surface: #18181d;
+    --surface-2: #21212a;
+    --border: #2a2a35;
+    --text: #f5f5f7;
+    --text-dim: #9a9aa8;
+    --accent: #ff5b3a;
+    --accent-2: #ffb84d;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; -webkit-font-smoothing: antialiased; }
+  body { min-height: 100vh; display: flex; flex-direction: column; }
+  a { color: inherit; text-decoration: none; }
+
+  header {
+    padding: 24px 32px;
+    border-bottom: 1px solid var(--border);
+    display: flex; justify-content: space-between; align-items: center;
+    position: sticky; top: 0; background: rgba(15,15,18,0.85); backdrop-filter: blur(12px); z-index: 10;
+  }
+  .logo { font-weight: 800; font-size: 20px; letter-spacing: -0.5px; }
+  .logo span { color: var(--accent); }
+  nav { display: flex; gap: 24px; font-size: 14px; color: var(--text-dim); }
+  nav a:hover { color: var(--text); }
+
+  main { flex: 1; padding: 48px 32px 96px; max-width: 1200px; margin: 0 auto; width: 100%; }
+
+  .hero { margin-bottom: 32px; }
+  .hero h1 { font-size: clamp(32px, 5vw, 56px); font-weight: 800; letter-spacing: -1.5px; line-height: 1.05; margin-bottom: 16px; }
+  .hero h1 em { font-style: normal; background: linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip: text; background-clip: text; color: transparent; }
+  .hero p { color: var(--text-dim); font-size: 17px; max-width: 720px; line-height: 1.5; }
+
+  .stage-wrap {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  .stage {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-width: 960px;
+    margin: 0 auto;
+    background: #6FB8E8;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .stage iframe {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    border: 0;
+    display: block;
+  }
+
+  .actions {
+    display: flex; gap: 12px; flex-wrap: wrap; justify-content: center;
+    margin-top: 16px;
+  }
+  .btn {
+    background: var(--surface-2);
+    border: 1px solid var(--border);
+    color: var(--text);
+    padding: 10px 18px;
+    border-radius: 999px;
+    font-size: 13px; font-weight: 700;
+    letter-spacing: 0.5px; text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.15s ease;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); }
+  .btn.primary { background: var(--accent); color: #fff; border-color: var(--accent); }
+  .btn.primary:hover { background: var(--accent-2); border-color: var(--accent-2); color: #1a1a1f; }
+
+  .meta {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 32px;
+  }
+  .meta .item {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 16px;
+  }
+  .meta .item .label { font-size: 11px; text-transform: uppercase; letter-spacing: 1.5px; color: var(--text-dim); margin-bottom: 6px; font-weight: 600; }
+  .meta .item .value { font-size: 15px; font-weight: 600; }
+
+  footer {
+    padding: 24px 32px; border-top: 1px solid var(--border);
+    color: var(--text-dim); font-size: 12px; text-align: center;
+    font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  }
+  footer a { color: var(--accent); }
+
+  @media (max-width: 600px) {
+    main { padding: 32px 16px 64px; }
+    header { padding: 16px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="logo">AIR-BLITZ<span>.</span>HUB</div>
+  <nav>
+    <a href="#play">Jogar</a>
+    <a href="https://augustogehm-wls.github.io/new-games-playable/" target="_blank" rel="noopener">Outros playables</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>Air <em>Blitz</em></h1>
+    <p>Side-scrolling air-shooter cartoon estilo Cuphead. Arraste em qualquer ponto da tela pra pilotar o caça F-39E, desvie de inimigos e projéteis, colete power-ups e sobreviva 30 segundos. Auto-fire ligado o tempo todo.</p>
+  </section>
+
+  <section id="play" class="stage-wrap">
+    <div class="stage">
+      <iframe src="playable.html" title="Air Blitz" allow="autoplay; fullscreen"></iframe>
+    </div>
+    <div class="actions">
+      <a class="btn primary" href="playable.html" target="_blank" rel="noopener">▶ Abrir em tela cheia</a>
+      <button class="btn" onclick="document.querySelector('iframe').src = 'playable.html?r=' + Date.now()">↻ Reiniciar</button>
+    </div>
+  </section>
+
+  <section class="meta">
+    <div class="item">
+      <div class="label">Engine</div>
+      <div class="value">PixiJS v8</div>
+    </div>
+    <div class="item">
+      <div class="label">Orientação</div>
+      <div class="value">Landscape 16:9</div>
+    </div>
+    <div class="item">
+      <div class="label">Duração</div>
+      <div class="value">~33 segundos</div>
+    </div>
+    <div class="item">
+      <div class="label">CTA</div>
+      <div class="value">Sky Warriors (Wildlife)</div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  Built with vanilla web tech · <a href="https://augustogehm-wls.github.io/new-games-playable/" target="_blank" rel="noopener">@playables-hub</a>
+</footer>
+
+</body>
+</html>
